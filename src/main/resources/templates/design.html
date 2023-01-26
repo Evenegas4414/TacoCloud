@@ -5,13 +5,66 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home: Spring In Action</title>
+    <title>Design: Spring In Action</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body class="bg-body">
-<h1 class="my-5 text-center">Welcome!</h1>
+<body class="bg-body my-5">
+<h1 class="text-center">Design your taco!</h1>
 <img class="mx-auto d-block" th:src="@{/images/taco.svg}" width="200" alt="Tacos">
+<br>
+<form class="container my-3" method="POST" th:object="${taco}">
+    <div class="d-grid gap-3">
+        <div class="ingredient-group" id="wraps">
+            <h3>Designate your wrap:</h3>
+            <div th:each="ingredient : ${wrap}">
+                <input class="form-check-input" th:id="'wrap-'+ ${ingredient.id}" th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredient.id}"/>
+                <label class="form-check-label" th:for="'wrap-'+ ${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label><br/>
+            </div>
+        </div>
+        <div class="ingredient-group" id="proteins">
+            <h3>Pick your protein:</h3>
+            <div th:each="ingredient : ${protein}">
+                <input class="form-check-input" th:id="'protein-'+ ${ingredient.id}" th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredient.id}"/>
+                <label class="form-check-label" th:for="'protein-'+ ${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label><br/>
+            </div>
+        </div>
+        <div class="ingredient-group" id="cheeses">
+            <h3>Choose your cheese:</h3>
+            <div th:each="ingredient : ${cheese}">
+                <input class="form-check-input" th:id="'cheese-'+ ${ingredient.id}" th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredient.id}"/>
+                <label class="form-check-label" th:for="'cheese-'+ ${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label><br/>
+            </div>
+        </div>
+        <div class="ingredient-group" id="veggies">
+            <h3>Determine your veggies:</h3>
+            <div th:each="ingredient : ${veggies}">
+                <input class="form-check-input" th:id="'veggies-'+ ${ingredient.id}" th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredient.id}"/>
+                <label class="form-check-label" th:for="'veggies-'+ ${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label><br/>
+            </div>
+        </div>
+        <div class="ingredient-group" id="sauces">
+            <h3>Select your sauce:</h3>
+            <div th:each="ingredient : ${sauce}">
+                <input class="form-check-input" th:id="'sauce-'+ ${ingredient.id}" th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredient.id}"/>
+                <label class="form-check-label" th:for="'sauce-'+ ${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label><br/>
+            </div>
+        </div>
+    </div>
+    <div class="my-3">
+        <label for="tacoName" class="form-label">Name your taco creation:</label>
+        <input type="text" th:field="*{name}" class="form-control" id="tacoName">
+        <br/>
+        <button type="submit" class="btn btn-primary">Submit Your Taco</button>
+    </div>
+</form>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

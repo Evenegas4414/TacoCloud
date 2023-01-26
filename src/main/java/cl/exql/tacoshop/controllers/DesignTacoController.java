@@ -63,4 +63,13 @@ public class DesignTacoController {
                 .collect(Collectors.toList());
     }
 
+    @PostMapping("")
+    public String processTaco(Taco taco,
+                              @ModelAttribute TacoOrder tacoOrder) {
+        tacoOrder.addTaco(taco);
+        log.info("Processing taco: {}", taco);
+        return "redirect:/order/current";
+
+    }
+
 }
